@@ -16,17 +16,20 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, Dispatch, SetStateAction } from 'react';
 import { SupersetClient, logging, t } from '@superset-ui/core';
 import { DatasetObject } from 'src/features/datasets/AddDataset/types';
 import { addDangerToast } from 'src/components/MessageToasts/actions';
 import DatasetPanel from './DatasetPanel';
 import { ITableColumn, IDatabaseTable, isIDatabaseTable } from './types';
+import { TableOption } from 'src/components/TableSelector';
+import { TableJoin } from 'src/pages/DatasetSmartCreation';
+import { removeTables } from 'src/SqlLab/actions/sqlLab';
 
 /**
  * Interface for the getTableMetadata API call
  */
-interface IColumnProps {
+export interface IColumnProps {
   /**
    * Unique id of the database
    */
@@ -56,6 +59,11 @@ export interface IDatasetPanelWrapperProps {
   schema?: string | null;
   setHasColumns?: Function;
   datasets?: DatasetObject[] | undefined;
+  smart?: boolean | undefined;
+  tablesInSchema?: TableOption[] | undefined;
+  joins?: TableJoin[] | undefined;
+  setJoins?: Dispatch<SetStateAction<TableJoin[] | undefined>>;
+  removeTable?: (tableName: string) => void;
 }
 
 const DatasetPanelWrapper = ({
@@ -64,6 +72,11 @@ const DatasetPanelWrapper = ({
   schema,
   setHasColumns,
   datasets,
+  smart,
+  tablesInSchema,
+  joins,
+  setJoins,
+  removeTable
 }: IDatasetPanelWrapperProps) => {
   const [columnList, setColumnList] = useState<ITableColumn[]>([]);
   const [loading, setLoading] = useState(false);
@@ -133,6 +146,13 @@ const DatasetPanelWrapper = ({
       loading={loading}
       tableName={tableName}
       datasets={datasets}
+      smart={smart}
+      tablesInSchema={tablesInSchema}
+      dbId={dbId}
+      schema={schema}
+      joins={joins}
+      setJoins={setJoins}
+      removeTable={removeTable}
     />
   );
 };
