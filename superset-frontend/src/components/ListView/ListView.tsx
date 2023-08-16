@@ -38,8 +38,15 @@ import {
 import { ListViewError, useListViewState } from './utils';
 import { EmptyStateBig, EmptyStateProps } from '../EmptyState';
 
+// eslint-disable-next-line theme-colors/no-literal-colors
 const ListViewStyles = styled.div`
   text-align: center;
+  margin: 10px;
+  border-radius: 4px;
+  background-color: ${({ theme }) => theme.colors.grayscale.light5};
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+  padding: 20px;
 
   .superset-list-view {
     text-align: left;

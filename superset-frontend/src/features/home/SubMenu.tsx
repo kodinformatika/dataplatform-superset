@@ -46,7 +46,7 @@ const StyledHeader = styled.div`
     margin-right: ${({ theme }) => theme.gridUnit * 3}px;
     float: right;
     position: absolute;
-    right: 0;
+    right: 32px;
     ul.ant-menu-root {
       padding: 0px;
     }

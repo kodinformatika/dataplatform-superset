@@ -25,24 +25,11 @@
 <html>
   <head>
     <title>
-      {% block title %}
-        {% if title %}
-          {{ title }}
-        {% elif appbuilder and appbuilder.app_name %}
-          {{ appbuilder.app_name }}
-        {% endif %}
-      {% endblock %}
+      Adatelemzés
     </title>
     {% block head_meta %}{% endblock %}
     {% block head_css %}
-      {% for favicon in favicons %}
-        <link
-          rel="{{favicon.rel if favicon.rel else "icon"}}"
-          type="{{favicon.type if favicon.type else "image/png"}}"
-          {% if favicon.sizes %}sizes={{favicon.sizes}}{% endif %}
-          href="{{ "" if favicon.href.startswith("http") else assets_prefix }}{{favicon.href}}"
-        >
-      {% endfor %}
+      <link rel="icon" href="{{ assets_prefix }}/static/assets/images/logo.png" />
       <link rel="stylesheet" type="text/css" href="{{ assets_prefix }}/static/appbuilder/css/flags/flags16.css" />
       <link rel="stylesheet" type="text/css" href="{{ assets_prefix }}/static/appbuilder/css/fontawesome/fontawesome.min.css">
       <link rel="stylesheet" type="text/css" href="{{ assets_prefix }}/static/appbuilder/css/fontawesome/regular.min.css">
@@ -80,7 +67,7 @@
 
     {% block body %}
       <div id="app" data-bootstrap="{{ bootstrap_data }}">
-        <img src="{{ assets_prefix }}/static/assets/images/loading.gif" style="width: 50px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)">
+        <img src="{{ assets_prefix }}/static/assets/images/loading.gif" style="width: 200px; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%)">
       </div>
     {% endblock %}
 
