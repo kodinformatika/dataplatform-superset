@@ -66,6 +66,8 @@ import {
   scheduleQuery,
   setActiveSouthPaneTab,
   updateSavedQuery,
+  queryEditorSetDb,
+  queryEditorSetSchema,
 } from 'src/SqlLab/actions/sqlLab';
 import {
   STATE_TYPE_MAP,
@@ -88,6 +90,7 @@ import { isFeatureEnabled } from 'src/featureFlags';
 import { EmptyStateBig } from 'src/components/EmptyState';
 import getBootstrapData from 'src/utils/getBootstrapData';
 import { isEmpty } from 'lodash';
+import AddSmartDataset from 'src/pages/DatasetSmartCreation';
 import TemplateParamsEditor from '../TemplateParamsEditor';
 import SouthPane from '../SouthPane';
 import SaveQuery from '../SaveQuery';
@@ -98,7 +101,6 @@ import SqlEditorLeftBar from '../SqlEditorLeftBar';
 import AceEditorWrapper from '../AceEditorWrapper';
 import RunQueryActionButton from '../RunQueryActionButton';
 import QueryLimitSelect from '../QueryLimitSelect';
-import AddSmartDataset from 'src/pages/DatasetSmartCreation';
 
 const bootstrapData = getBootstrapData();
 const scheduledQueriesConf = bootstrapData?.common?.conf?.SCHEDULED_QUERIES;
@@ -119,6 +121,7 @@ const StyledToolbar = styled.div`
   .rightItems {
     display: flex;
     align-items: center;
+
     & > span {
       margin-right: ${({ theme }) => theme.gridUnit * 2}px;
       display: inline-block;
@@ -140,7 +143,7 @@ const StyledSidebar = styled.div`
   padding: ${({ theme, hide }) => (hide ? 0 : theme.gridUnit * 2.5)}px;
   border-right: 1px solid
     ${({ theme, hide }) =>
-    hide ? 'transparent' : theme.colors.grayscale.light2};
+      hide ? 'transparent' : theme.colors.grayscale.light2};
 `;
 
 const StyledSqlEditor = styled.div`
@@ -259,7 +262,10 @@ const SqlEditor = ({
   const [smartSql, setSmartSql] = useState(undefined);
 
   // TODO REMOVE ME
-  useEffect(() => console.log('------showSmartModal-----', showSmartModal), [showSmartModal]);
+  useEffect(
+    () => console.log('------showSmartModal-----', showSmartModal),
+    [showSmartModal],
+  );
   const openSmartModal = () => {
     setShowSmartModal(true);
   };
@@ -546,8 +552,9 @@ const SqlEditor = ({
   };
 
   const elementStyle = (dimension, elementSize, gutterSize) => ({
-    [dimension]: `calc(${elementSize}% - ${gutterSize + SQL_EDITOR_GUTTER_MARGIN
-      }px)`,
+    [dimension]: `calc(${elementSize}% - ${
+      gutterSize + SQL_EDITOR_GUTTER_MARGIN
+    }px)`,
   });
 
   const createTableAs = () => {
@@ -617,8 +624,12 @@ const SqlEditor = ({
     dispatch(addSavedQueryToTabState(queryEditor, savedQuery));
   };
 
-  const onSmartSqlChanged = (sql) => {
+  const onSmartSqlChanged = (sql, dbId, newSchema) => {
     setSmartSql(sql);
+
+    dispatch(queryEditorSetDb(queryEditor, dbId));
+    // TODO will be changed on refresh
+    dispatch(queryEditorSetSchema(queryEditor, newSchema));
   };
 
   const renderEditorBottomBar = () => {
@@ -665,14 +676,15 @@ const SqlEditor = ({
               overlayCreateAsMenu={showMenu ? runMenuBtn : null}
             />
           </span>
-          <Button onClick={openSmartModal}>{'TODO_LABEL SMART MODE'}</Button>
-          <Modal show={showSmartModal}
-            title={'TODO_LABEL CREATE QUERY WITH SMART MODE'}
+          <Button onClick={openSmartModal}>TODO_LABEL SMART MODE</Button>
+          <Modal
+            show={showSmartModal}
+            title="TODO_LABEL CREATE QUERY WITH SMART MODE"
             onHide={closeSmartModal}
-            height={'95%'}
-            maxHeight={'95%'}
-            width={'95%'}
-            maxWidth={'95%'}
+            height="95%"
+            maxHeight="95%"
+            width="95%"
+            maxWidth="95%"
             footer={
               <>
                 <Button onClick={closeSmartModal}>{t('Cancel')}</Button>
@@ -681,10 +693,11 @@ const SqlEditor = ({
                   disabled={!smartSql}
                   onClick={saveSmartSql}
                 >
-                  {'TODO_LABEL SAVE SMART SQL'}
+                  TODO_LABEL SAVE SMART SQL
                 </Button>
               </>
-            }>
+            }
+          >
             <AddSmartDataset onSqlChange={onSmartSqlChanged} />
           </Modal>
           {isFeatureEnabled(FeatureFlag.ESTIMATE_QUERY_COST) &&
@@ -733,7 +746,7 @@ const SqlEditor = ({
             <Icons.MoreHoriz iconColor={theme.colors.grayscale.base} />
           </AntdDropdown>
         </div>
-      </StyledToolbar >
+      </StyledToolbar>
     );
   };
 
