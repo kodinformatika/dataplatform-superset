@@ -25,7 +25,6 @@ import { Row, Col, Grid } from 'src/components';
 import { MainNav as DropdownMenu, MenuMode } from 'src/components/Menu';
 import { Tooltip } from 'src/components/Tooltip';
 import { Link } from 'react-router-dom';
-import { GenericLink } from 'src/components/GenericLink/GenericLink';
 import Icons from 'src/components/Icons';
 import { useUiConfig } from 'src/components/UiConfigContext';
 import { URL_PARAMS } from 'src/constants';
@@ -35,6 +34,7 @@ import {
   MenuData,
 } from 'src/types/bootstrapTypes';
 import RightMenu from './RightMenu';
+import logo from "../../assets/images/logo.png"
 
 interface MenuProps {
   data: MenuData;
@@ -55,15 +55,15 @@ const StyledHeader = styled.header`
       }
       .navbar-brand {
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
+        align-items: center;
         /* must be exactly the height of the Antd navbar */
         min-height: 50px;
         padding: ${theme.gridUnit}px
           ${theme.gridUnit * 2}px
           ${theme.gridUnit}px
           ${theme.gridUnit * 4}px;
-        max-width: ${theme.gridUnit * theme.brandIconMaxWidth}px;
         img {
           height: 100%;
           object-fit: contain;
@@ -246,18 +246,13 @@ export function Menu({
           <Tooltip
             id="brand-tooltip"
             placement="bottomLeft"
-            title={brand.tooltip}
+            title="Vissza a kezdőoldalra"
             arrowPointAtCenter
           >
-            {isFrontendRoute(window.location.pathname) ? (
-              <GenericLink className="navbar-brand" to={brand.path}>
-                <img src={brand.icon} alt={brand.alt} />
-              </GenericLink>
-            ) : (
-              <a className="navbar-brand" href={brand.path}>
-                <img src={brand.icon} alt={brand.alt} />
-              </a>
-            )}
+            <a className="navbar-brand" href={brand.path}>
+              <img src={logo} alt="logo" style={{ marginRight: '20px' }} />
+              Adatelemzés
+            </a>
           </Tooltip>
           {brand.text && (
             <div className="navbar-brand-text">

@@ -77,8 +77,13 @@ interface LoadingProps {
 
 const DEFAULT_TAB_ARR = ['2', '3'];
 
+// eslint-disable-next-line theme-colors/no-literal-colors
 const WelcomeContainer = styled.div`
+  margin: 20px;
+  border-radius: 16px;
   background-color: ${({ theme }) => theme.colors.grayscale.light4};
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px,
+    rgba(0, 0, 0, 0.14) 0px 4px 5px 0px, rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
   .ant-row.menu {
     margin-top: -15px;
     background-color: ${({ theme }) => theme.colors.grayscale.light4};

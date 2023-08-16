@@ -85,6 +85,7 @@
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
     "@fontsource/inter": "^4.0.0",
+    "@fontsource/poppins": "^5.0.8",
     "@reduxjs/toolkit": "^1.9.3",
     "@superset-ui/chart-controls": "file:./packages/superset-ui-chart-controls",
     "@superset-ui/core": "file:./packages/superset-ui-core",

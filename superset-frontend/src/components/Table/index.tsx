@@ -159,8 +159,9 @@ const PAGINATION_HEIGHT = 40;
 const HEADER_HEIGHT = 68;
 
 const StyledTable = styled(AntTable)<{ height?: number }>(
+  // eslint-disable-next-line theme-colors/no-literal-colors
   ({ theme, height }) => `
-    .ant-table-body {
+  .ant-table-body {
       overflow: auto;
       height: ${height ? `${height}px` : undefined};
     }
@@ -411,7 +412,7 @@ export function Table<RecordType extends object>(
 
   return (
     <ConfigProvider renderEmpty={renderEmpty}>
-      <div ref={wrapperRef}>
+      <div style={{ borderRadius: '12px' }} ref={wrapperRef}>
         {!virtualize && (
           <StyledTable
             {...sharedProps}

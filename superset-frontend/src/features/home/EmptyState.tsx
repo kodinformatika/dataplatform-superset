@@ -56,6 +56,7 @@ export interface EmptyStateProps {
 }
 const EmptyContainer = styled.div`
   min-height: 200px;
+  margin-bottom: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
