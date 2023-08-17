@@ -39,7 +39,7 @@ const SaveDatasetActionButton = ({
   )`
     &.ant-dropdown-button button.ant-btn.ant-btn-default {
       &:first-of-type {
-        width: ${theme.gridUnit * 16}px;
+        width: ${theme.gridUnit * 18}px;
       }
       font-weight: ${theme.gridUnit * 150};
       background-color: ${theme.colors.primary.light4};

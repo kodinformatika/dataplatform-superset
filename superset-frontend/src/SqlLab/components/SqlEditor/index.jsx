@@ -665,9 +665,9 @@ const SqlEditor = ({
               overlayCreateAsMenu={showMenu ? runMenuBtn : null}
             />
           </span>
-          <Button onClick={openSmartModal}>{'TODO_LABEL SMART MODE'}</Button>
+          <Button onClick={openSmartModal}>{t('SMART MODE')}</Button>
           <Modal show={showSmartModal}
-            title={'TODO_LABEL CREATE QUERY WITH SMART MODE'}
+            title={t('CREATE QUERY WITH SMART MODE')}
             onHide={closeSmartModal}
             height={'95%'}
             maxHeight={'95%'}
@@ -681,7 +681,7 @@ const SqlEditor = ({
                   disabled={!smartSql}
                   onClick={saveSmartSql}
                 >
-                  {'TODO_LABEL SAVE SMART SQL'}
+                  {t('SAVE SMART SQL')}
                 </Button>
               </>
             }>

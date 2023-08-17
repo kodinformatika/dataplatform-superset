@@ -181,7 +181,7 @@ const RightMenu = ({
           perm: canDataset && nonExamplesDBConnected,
         },
         {
-          label: t('TODO_LABEL Create smart dataset'),
+          label: t('CREATE SMART DATASET'),
           name: GlobalMenuDataOptions.DATASET_SMART_CREATION,
           url: '/dataset/smart/add/',
           perm: canDataset && nonExamplesDBConnected,

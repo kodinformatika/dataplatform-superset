@@ -1585,7 +1585,7 @@ const DatabaseModal: FunctionComponent<DatabaseModalProps> = ({
           redirectURL('/dataset/smart/add/');
         }}
       >
-        {t('TODO_LABEL CREATE SMART DATASET')}
+        {t('CREATE SMART DATASET')}
       </Button>
       <Button
         buttonStyle="secondary"

@@ -189,14 +189,14 @@ const DEFAULT_PAGE_SIZE = 25;
 // Define the columns for Table instance
 export const tableColumnDefinition: ColumnsType<ITableColumn> = [
   {
-    title: 'Column Name',
+    title: t('Column Name'),
     dataIndex: 'name',
     key: 'name',
     sorter: (a: ITableColumn, b: ITableColumn) =>
       alphabeticalSort('name', a, b),
   },
   {
-    title: 'Datatype',
+    title: t('Datatype'),
     dataIndex: 'type',
     key: 'type',
     width: '100px',
@@ -511,7 +511,7 @@ justify-content: space-between;
               <>
                 <StyledAddNewTableBox onClick={openModal}>
                   <div className="fa fa-plus" />{' '}
-                  <span>{'TODO_LABEL Join new table'}</span>
+                  <span>{t('Join new table')}</span>
                 </StyledAddNewTableBox>
                 <Icons.CancelX
                   iconColor={
@@ -527,7 +527,7 @@ justify-content: space-between;
       <Modal
         width='100%'
         show={modalOpen}
-        title={'TODO_LABEL Join new table'}
+        title={t('Join new table')}
         onHide={onHide}
         footer={
           <>
@@ -555,7 +555,7 @@ justify-content: space-between;
       >
         <StyledModalContent>
           <div className='modalSection'>
-            <div>TODO_LABEL Source columns</div>
+            <div>{t('Source columns')}</div>
             <Table
               loading={loading}
               size={TableSize.SMALL}
@@ -570,7 +570,7 @@ justify-content: space-between;
           </div>
 
           <div className='modalSection'>
-            <div>TODO_LABEL Join tables</div>
+            <div>{t('Join tables')}</div>
             {
               tablesInSchema && tablesInSchema.map((option, i) => (
                 <div
@@ -590,8 +590,8 @@ justify-content: space-between;
 
           {selectedJoinTable &&
             <div className='modalSection'>
-              {error && <div> {'TODO_LABEL Source column and join column type must be the same'} </div>}
-              <div>TODO_LABEL Join columns</div>
+              {error && <div> {t('Source column and join column type must be the same')} </div>}
+              <div>{t('Join columns')}</div>
               <div>{selectedJoinTable.value}</div>
               <Table
                 loading={joinTableLoading}
